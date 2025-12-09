@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DSO Overflow - DevSecOps Podcast</title>
+    <meta name="description" content="DSO Overflow - A DevSecOps London Gathering production podcast">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header class="header">
+        <div class="header-container">
+            <img src="logo/DSODigital.svg" alt="DSO Overflow Logo" class="logo">
+            <h1 class="site-title">DSO Overflow</h1>
+            <p class="site-subtitle">A DevSecOps London Gathering Production</p>
+        </div>
+    </header>
+
+    <main class="main-content">
+        <div class="container">
+            <div id="loading" class="loading">
+                <div class="spinner"></div>
+                <p>Loading episodes...</p>
+            </div>
+            
+            <div id="error" class="error" style="display: none;">
+                <p>Failed to load episodes. Please try again later.</p>
+            </div>
+
+            <div id="episodes-grid" class="episodes-grid"></div>
+
+            <div id="load-more" class="load-more" style="display: none;">
+                <div class="spinner"></div>
+                <p>Loading more episodes...</p>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2024 DSO Overflow. A DevSecOps London Gathering production.</p>
+            <p>Find us on <a href="https://dsolg.com/" target="_blank" rel="noopener noreferrer">dsolg.com</a></p>
+        </div>
+    </footer>
+
+    <script src="config.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
+
