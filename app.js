@@ -73,22 +73,21 @@ async function loadSupporters() {
             link.title = supporter.name;
             
             const img = document.createElement('img');
+            const isSvg = supporter.logo.toLowerCase().endsWith('.svg');
+            
             img.src = `logo/supporters/${supporter.logo}`;
             img.alt = `${supporter.name} logo`;
             img.className = 'supporter-logo';
             
-            // Add SVG class if it's an SVG file
-            if (supporter.logo.toLowerCase().endsWith('.svg')) {
+            // For SVGs, set explicit dimensions immediately via inline styles
+            if (isSvg) {
                 img.classList.add('supporter-logo-svg');
-            }
-            
-            // Ensure image loads properly
-            img.onload = function() {
-                // Force reflow to ensure dimensions are applied
-                img.style.display = 'none';
-                img.offsetHeight; // Trigger reflow
+                // Set inline styles immediately to prevent 0x0 rendering
+                img.style.height = '60px';
+                img.style.width = 'auto';
+                img.style.maxWidth = '200px';
                 img.style.display = 'block';
-            };
+            }
             
             link.appendChild(img);
             supportersContainer.appendChild(link);

@@ -226,6 +226,8 @@ picture {
     justify-content: center;
     transition: transform 0.3s ease, filter 0.3s ease;
     opacity: 0.8;
+    min-height: 60px;
+    min-width: 100px;
 }
 
 .supporter-logo-link:hover {
@@ -247,14 +249,13 @@ picture {
 
 /* Fix SVG rendering - ensure SVGs have proper dimensions */
 .supporter-logo-svg {
-    width: 200px !important;
     height: 60px !important;
+    width: auto !important;
     max-width: 200px !important;
     max-height: 60px !important;
-    min-width: 200px;
-    min-height: 60px;
     object-fit: contain;
     object-position: center;
+    display: block;
 }
 
 .supporter-logo-link:hover .supporter-logo {
