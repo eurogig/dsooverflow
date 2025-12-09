@@ -48,11 +48,51 @@ async function startTypewriter() {
     }
 }
 
+// Load and display supporters
+async function loadSupporters() {
+    try {
+        const response = await fetch('logo/supporters/supporters.json');
+        if (!response.ok) {
+            console.warn('Could not load supporters.json');
+            return;
+        }
+        
+        const supporters = await response.json();
+        const supportersContainer = document.getElementById('supporters-logos');
+        
+        if (!supportersContainer || supporters.length === 0) {
+            return;
+        }
+        
+        supporters.forEach(supporter => {
+            const link = document.createElement('a');
+            link.href = supporter.url;
+            link.target = '_blank';
+            link.rel = 'noopener noreferrer';
+            link.className = 'supporter-logo-link';
+            link.title = supporter.name;
+            
+            const img = document.createElement('img');
+            img.src = `logo/supporters/${supporter.logo}`;
+            img.alt = `${supporter.name} logo`;
+            img.className = 'supporter-logo';
+            
+            link.appendChild(img);
+            supportersContainer.appendChild(link);
+        });
+    } catch (error) {
+        console.error('Error loading supporters:', error);
+    }
+}
+
 // Initialize the app
 async function init() {
     try {
         // Start typewriter effect
         startTypewriter();
+        
+        // Load supporters
+        loadSupporters();
         
         // Check if API key is configured
         if (!window.API_CONFIG || !window.API_CONFIG.API_KEY) {
