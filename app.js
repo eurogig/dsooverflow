@@ -77,6 +77,19 @@ async function loadSupporters() {
             img.alt = `${supporter.name} logo`;
             img.className = 'supporter-logo';
             
+            // Add SVG class if it's an SVG file
+            if (supporter.logo.toLowerCase().endsWith('.svg')) {
+                img.classList.add('supporter-logo-svg');
+            }
+            
+            // Ensure image loads properly
+            img.onload = function() {
+                // Force reflow to ensure dimensions are applied
+                img.style.display = 'none';
+                img.offsetHeight; // Trigger reflow
+                img.style.display = 'block';
+            };
+            
             link.appendChild(img);
             supportersContainer.appendChild(link);
         });
