@@ -81,15 +81,30 @@ body {
 
 .logo {
     max-width: 500px;
-    width: 100%;
+    width: 500px;
     height: auto;
     flex-shrink: 0;
     filter: drop-shadow(0 0 20px rgba(74, 144, 226, 0.3));
     transition: filter 0.3s ease;
+    display: block;
+    /* Fix SVG rendering */
+    image-rendering: auto;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    transform: translateZ(0);
 }
 
 .logo:hover {
     filter: drop-shadow(0 0 30px rgba(74, 144, 226, 0.5));
+}
+
+/* SVG specific fixes - ensure proper aspect ratio and rendering */
+.logo[src$=".svg"] {
+    max-width: 500px;
+    width: 500px;
+    height: auto;
+    object-fit: contain;
+    preserveAspectRatio: xMidYMid meet;
 }
 
 .header-text {
@@ -100,13 +115,44 @@ body {
 .site-description {
     font-size: 1.1rem;
     line-height: 1.8;
-    color: var(--text-light);
+    color: #00ff00;
     margin-bottom: 1.5rem;
     text-align: left;
+    font-family: 'Courier New', 'Consolas', 'Monaco', monospace;
+    text-shadow: 0 0 10px rgba(0, 255, 0, 0.5);
+    opacity: 0;
+    transition: opacity 0.3s ease;
 }
 
 .site-description:last-child {
     margin-bottom: 0;
+}
+
+.console-prompt {
+    color: #00d4ff;
+    font-weight: bold;
+    margin-right: 0.5rem;
+    text-shadow: 0 0 8px rgba(0, 212, 255, 0.8);
+}
+
+.typewriter-text {
+    color: #00ff00;
+    text-shadow: 0 0 10px rgba(0, 255, 0, 0.5);
+}
+
+.cursor {
+    display: inline-block;
+    width: 2px;
+    background-color: #00ff00;
+    animation: blink 1s infinite;
+    margin-left: 2px;
+    text-shadow: 0 0 10px rgba(0, 255, 0, 0.8);
+    box-shadow: 0 0 10px rgba(0, 255, 0, 0.5);
+}
+
+@keyframes blink {
+    0%, 50% { opacity: 1; }
+    51%, 100% { opacity: 0; }
 }
 
 /* Main Content */
@@ -347,6 +393,12 @@ body {
 
     .logo {
         max-width: 400px;
+        width: 400px;
+    }
+
+    .logo[src$=".svg"] {
+        width: 400px;
+        max-width: 400px;
     }
 
     .header-text {
@@ -370,6 +422,12 @@ body {
 
     .logo {
         max-width: 300px;
+        width: 300px;
+    }
+
+    .logo[src$=".svg"] {
+        width: 300px;
+        max-width: 300px;
     }
 
     .site-description {
@@ -392,6 +450,12 @@ body {
     }
 
     .logo {
+        max-width: 250px;
+        width: 250px;
+    }
+
+    .logo[src$=".svg"] {
+        width: 250px;
         max-width: 250px;
     }
 

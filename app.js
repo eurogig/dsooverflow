@@ -13,9 +13,47 @@ const loadingElement = document.getElementById('loading');
 const errorElement = document.getElementById('error');
 const loadMoreElement = document.getElementById('load-more');
 
+// Typewriter effect
+const descriptionTexts = [
+    "DSO Overflow was born out of a desire, post DevSecOps London Gathering meet-up, to be able to have a relaxed conversation with our speakers about their area of expertise. A behind the scenes post talk interview, to ask all of the questions you didn't think to ask at the meet-up and more.",
+    "In this show, you'll meet professionals, practitioners and theorists working in cyber security, software engineering and operations to talk about a number of CyberSecurity topics. We discuss how organisations factor security into their product delivery cycles without compromising the process."
+];
+
+async function typeWriter(element, text, speed = 30) {
+    const textElement = element.querySelector('.typewriter-text');
+    const cursor = element.querySelector('.cursor');
+    
+    textElement.textContent = '';
+    element.style.opacity = '1';
+    
+    for (let i = 0; i < text.length; i++) {
+        textElement.textContent += text[i];
+        await new Promise(resolve => setTimeout(resolve, speed));
+    }
+    
+    // Remove cursor after typing is complete
+    if (cursor) {
+        cursor.style.opacity = '0';
+    }
+}
+
+async function startTypewriter() {
+    const desc1 = document.getElementById('description1');
+    const desc2 = document.getElementById('description2');
+    
+    if (desc1 && desc2) {
+        await typeWriter(desc1, descriptionTexts[0], 20);
+        await new Promise(resolve => setTimeout(resolve, 500));
+        await typeWriter(desc2, descriptionTexts[1], 20);
+    }
+}
+
 // Initialize the app
 async function init() {
     try {
+        // Start typewriter effect
+        startTypewriter();
+        
         // Check if API key is configured
         if (!window.API_CONFIG || !window.API_CONFIG.API_KEY) {
             throw new Error('API key not configured. Please set BUZZSPROUT_API_KEY in GitHub secrets.');
