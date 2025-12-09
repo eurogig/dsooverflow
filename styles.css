@@ -98,13 +98,17 @@ body {
     filter: drop-shadow(0 0 30px rgba(74, 144, 226, 0.5));
 }
 
-/* SVG specific fixes - ensure proper aspect ratio and rendering */
-.logo[src$=".svg"] {
+/* Logo fixes - ensure proper aspect ratio and rendering */
+.logo {
     max-width: 500px;
     width: 500px;
     height: auto;
     object-fit: contain;
-    preserveAspectRatio: xMidYMid meet;
+}
+
+picture {
+    display: block;
+    flex-shrink: 0;
 }
 
 .header-text {
@@ -396,11 +400,6 @@ body {
         width: 400px;
     }
 
-    .logo[src$=".svg"] {
-        width: 400px;
-        max-width: 400px;
-    }
-
     .header-text {
         text-align: center;
     }
@@ -425,11 +424,6 @@ body {
         width: 300px;
     }
 
-    .logo[src$=".svg"] {
-        width: 300px;
-        max-width: 300px;
-    }
-
     .site-description {
         font-size: 1rem;
     }
@@ -452,11 +446,6 @@ body {
     .logo {
         max-width: 250px;
         width: 250px;
-    }
-
-    .logo[src$=".svg"] {
-        width: 250px;
-        max-width: 250px;
     }
 
     .site-description {
